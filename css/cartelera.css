@@ -1,0 +1,460 @@
+/* ==========================================================================
+   CARTELERA · Casa de la Cultura de Juchitán
+   Diseño "cartel primero": el cartel es el protagonista; la fecha va en una
+   cinta guinda (misma familia visual que Efemérides) y debajo van los datos
+   clave y una acción clara.
+   ========================================================================== */
+
+#cartelera {
+  --car-guinda: var(--guinda, #7B1C3E);
+  --car-oro: var(--oro, #C9A84C);
+  --car-tinta: var(--ink, #2B2118);
+  --car-gap: 24px;
+  --car-linea: rgba(123, 28, 62, .14);
+}
+
+/* [hidden] siempre gana (los botones/flechas definen su propio display) */
+#cartelera [hidden],
+.cartelera-lightbox [hidden] { display: none !important; }
+
+/* ---------- Filtros ---------- */
+.cartelera-filtros {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.cartelera-filtro {
+  background: transparent;
+  border: 1px solid rgba(123, 28, 62, .25);
+  color: var(--car-tinta);
+  font: inherit;
+  font-size: 15px;
+  padding: 9px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.cartelera-filtro:hover { background: rgba(123, 28, 62, .08); }
+.cartelera-filtro.activo,
+.cartelera-filtro[aria-pressed="true"] {
+  background: var(--car-guinda);
+  border-color: var(--car-guinda);
+  color: #fff;
+}
+#cartelera button:focus-visible,
+#cartelera a:focus-visible,
+.cartelera-lightbox button:focus-visible {
+  outline: 3px solid var(--car-oro);
+  outline-offset: 2px;
+}
+
+/* ---------- Carrusel ---------- */
+.cartelera-feed-wrap {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cartelera-feed {
+  display: flex;
+  gap: var(--car-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  padding: 8px 4px 28px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.cartelera-feed::-webkit-scrollbar { display: none; }
+
+/* Con menos de 3 publicaciones se centran en lugar de pegarse a la izquierda */
+.cartelera-feed.cartelera-feed--centrado { justify-content: safe center; }
+
+.cartelera-flecha {
+  position: absolute;
+  top: 36%;
+  transform: translateY(-50%);
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--car-linea);
+  color: var(--car-guinda);
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(43, 33, 24, .14);
+  z-index: 3;
+  transition: background .2s, color .2s;
+}
+.cartelera-flecha:hover { background: var(--car-guinda); color: #fff; }
+.cartelera-flecha.izquierda { left: -20px; }
+.cartelera-flecha.derecha { right: -20px; }
+
+/* ---------- Tarjeta ---------- */
+.car-card {
+  --c: var(--car-guinda);
+  position: relative;
+  flex: 0 0 calc((100% - 2 * var(--car-gap)) / 3);
+  width: calc((100% - 2 * var(--car-gap)) / 3);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--car-linea);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(43, 33, 24, .06);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.car-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(43, 33, 24, .14);
+}
+
+/* Colores por categoría (mismos tonos que Efemérides) */
+.car-card[data-tipo="curso"]        { --c: #7B1C3E; }
+.car-card[data-tipo="taller"]       { --c: #b5532f; }
+.car-card[data-tipo="exposicion"]   { --c: #9a6b1f; }
+.car-card[data-tipo="presentacion"] { --c: #5b2a4e; }
+.car-card[data-tipo="noticia"]      { --c: #3a1220; }
+
+/* Cartel: proporción fija 13:16 (la de tus carteles) para que todas alineen */
+.car-poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 13 / 16;
+  padding: 0;
+  border: 0;
+  border-radius: 9px 9px 0 0;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--c), #1d0a10);
+  cursor: zoom-in;
+}
+.car-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.car-card:hover .car-poster img { transform: scale(1.03); }
+.car-poster-lupa {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(29, 10, 16, .72);
+  color: #fff;
+  font-size: 15px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .25s, transform .25s;
+}
+.car-card:hover .car-poster-lupa,
+.car-poster:focus-visible .car-poster-lupa { opacity: 1; transform: none; }
+.car-sin-cartel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  color: rgba(255, 255, 255, .9);
+  font-family: var(--font-titles, 'Fraunces', serif);
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+/* Cuerpo */
+.car-cuerpo {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 0 18px 18px;
+}
+.car-top {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  column-gap: 14px;
+  align-items: start;
+}
+
+/* Cinta de fecha (banderín) */
+.car-cinta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 104px;
+  padding: 10px 4px 20px;
+  background: var(--c);
+  color: #fff;
+  text-align: center;
+  line-height: 1.05;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 10px), 0 100%);
+}
+.car-cinta b {
+  font-family: var(--font-titles, 'Fraunces', serif);
+  font-size: 50px;
+  font-weight: 700;
+}
+.car-cinta b.largo { font-size: 21px; letter-spacing: -.5px; }
+.car-cinta span {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.car-cinta em {
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: .85;
+  margin-bottom: 2px;
+}
+.car-cinta i { font-size: 6px; margin-bottom: 4px; }
+.car-cinta span.chico { font-size: 9px; letter-spacing: .8px; }
+
+.car-head { padding-top: 16px; min-width: 0; }
+.car-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.car-tipo { color: var(--c); }
+.car-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(43, 33, 24, .6);
+  letter-spacing: .6px;
+}
+.car-estado::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8a8374;
+}
+.car-estado[data-e="curso"]::before      { background: #2f8f5b; }
+.car-estado[data-e="proximo"]::before    { background: var(--car-oro); }
+.car-estado[data-e="permanente"]::before { background: var(--c); }
+
+.car-titulo {
+  margin: 0;
+  font-family: var(--font-titles, 'Fraunces', serif);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--car-tinta);
+}
+
+.car-info {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px dashed rgba(164, 142, 108, .7);
+  display: grid;
+  gap: 8px;
+}
+.car-info li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(43, 33, 24, .86);
+}
+.car-info i { color: var(--c); font-size: 15px; line-height: 1.35; flex: none; }
+
+.car-resumen {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(43, 33, 24, .68);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Acciones: siempre al fondo de la tarjeta */
+.car-acciones {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+.car-btn {
+  flex: 1 1 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--car-guinda);
+  background: var(--car-guinda);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.car-btn:hover { background: var(--guinda-dark, #5a1229); border-color: var(--guinda-dark, #5a1229); color: #fff; }
+.car-btn--ver { background: transparent; color: var(--car-guinda); }
+.car-btn--ver:hover { background: var(--car-guinda); color: #fff; }
+.car-compartir {
+  flex: none;
+  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(123, 28, 62, .25);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--car-guinda);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.car-compartir:hover { background: rgba(123, 28, 62, .08); }
+
+/* Menú de compartir (solo si el navegador no tiene compartir nativo) */
+.car-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% - 6px);
+  min-width: 180px;
+  display: none;
+  background: #fff;
+  border: 1px solid var(--car-linea);
+  border-radius: 8px;
+  box-shadow: 0 10px 26px rgba(43, 33, 24, .18);
+  overflow: hidden;
+  z-index: 5;
+}
+.car-menu.abierto { display: block; }
+.car-menu a,
+.car-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  color: var(--car-tinta);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.car-menu a:hover,
+.car-menu button:hover { background: rgba(123, 28, 62, .08); }
+
+/* Actividades finalizadas (solo si la persona pide verlas) */
+.car-card.pasada .car-poster img { filter: grayscale(1) contrast(.95); }
+.car-card.pasada .car-cinta { background: #8a8374; }
+.car-card.pasada .car-tipo { color: #8a8374; }
+
+/* Enlace "ver anteriores" y estado vacío */
+.car-pasadas-wrap { text-align: center; margin-top: 4px; }
+.car-pasadas {
+  border: 0;
+  background: none;
+  padding: 6px 4px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--car-guinda);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+.cartelera-vacio {
+  width: 100%;
+  max-width: 520px;
+  margin: 30px auto;
+  text-align: center;
+  color: #5b4636;
+  line-height: 1.7;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 992px) {
+  .car-card {
+    flex-basis: calc((100% - var(--car-gap)) / 2);
+    width: calc((100% - var(--car-gap)) / 2);
+  }
+  .cartelera-flecha.izquierda { left: -8px; }
+  .cartelera-flecha.derecha { right: -8px; }
+}
+@media (max-width: 700px) {
+  #cartelera { --car-gap: 16px; }
+  .cartelera-flecha { display: none; }          /* en celular se desliza con el dedo */
+  .car-card { flex-basis: 82vw; width: 82vw; }
+  .cartelera-filtros { margin-bottom: 26px; }
+  .cartelera-filtro { font-size: 14px; padding: 8px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .car-card, .car-poster img, .car-poster-lupa { transition: none; }
+  .car-card:hover { transform: none; }
+}
+
+/* ---------- Lightbox ---------- */
+.cartelera-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 12, 8, .94);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  cursor: zoom-out;
+}
+.cartelera-lightbox.abierto { display: flex; }
+.cartelera-lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+  cursor: default;
+}
+.cartelera-lightbox-cerrar {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  font-size: 32px;
+  line-height: 1;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}

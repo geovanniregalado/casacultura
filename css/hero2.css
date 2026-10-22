@@ -1,0 +1,215 @@
+.hero {
+    --hero-fondo: #FDF6ED;                                  
+    --hero-maroon: var(--guinda-dark);                                  
+    --hero-fuente-titulo: var(--font-titles);
+    --hero-fuente-texto: var(--font-apple);
+    --hero-margen: max(28px, calc((100% - 1200px) / 2));
+
+    position: relative;
+    background: var(--hero-fondo);
+    overflow: hidden;
+    font-family: var(--hero-fuente-texto);
+  }
+
+  .hero-escenario { display: grid; }
+
+  .hero-slide {
+    grid-area: 1 / 1;
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0s linear 0.8s;
+  }
+
+  .hero-slide.activa {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.8s ease, visibility 0s;
+  }
+
+  /* --- Foto a la derecha, que se desvanece hacia el texto --- */
+  .hero-foto {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 58%;
+    background: #b8946a;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 36%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 36%);
+  }
+
+  .hero-foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.07);
+    transition: transform 8s ease-out;
+  }
+
+  .hero-slide.activa .hero-foto img { transform: scale(1); }
+
+  /* --- Texto --- */
+  .hero-contenido {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 56px 46% 84px var(--hero-margen);
+  }
+
+  .hero-contenido > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .hero-slide.activa .hero-contenido > * { opacity: 1; transform: none; }
+  .hero-slide.activa .hero-contenido > *:nth-child(1) { transition-delay: 0.15s; }
+  .hero-slide.activa .hero-contenido > *:nth-child(2) { transition-delay: 0.3s; }
+  .hero-slide.activa .hero-contenido > *:nth-child(3) { transition-delay: 0.45s; }
+  .hero-slide.activa .hero-contenido > *:nth-child(4) { transition-delay: 0.6s; }
+
+  .hero-kicker {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #993556;
+  }
+
+  .hero-titulo {
+    margin: 0 0 18px;
+    font-family: var(--hero-fuente-titulo);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.98;
+    letter-spacing: 0.5px;
+    color: var(--hero-maroon);
+    font-size: 64px; font-size: clamp(34px, 5.6vw, 78px);
+  }
+
+  .hero-texto {
+    margin: 0 0 26px;
+    max-width: 470px;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.6;
+    color: #5a3a40;
+  }
+
+  .hero-boton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--hero-maroon);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--hero-fuente-titulo);
+    font-size: 16px;
+    padding: 13px 26px;
+    border-radius: 7px;
+    transition: background 0.18s ease, transform 0.18s ease;
+  }
+
+  .hero-boton:hover { background: #5e1329; transform: translateY(-2px); }
+
+  /* --- Diapositiva de Francisco Toledo --- */
+  .hero-slide.toledo .hero-foto { width: 48%; background: #6b1a35; }
+  .hero-slide.toledo .hero-foto img { object-position: center 20%; } /* AJUSTA AQUÍ: qué parte de la foto se ve */
+  .hero-slide.toledo .hero-contenido { padding-right: 52%; }
+
+  /* Monograma de respaldo, visible solo si no hay foto */
+  .hero-slide.toledo .hero-foto::before {
+    content: 'FT';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--hero-fuente-titulo);
+    font-weight: 800;
+    font-size: 150px;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.28);
+  }
+
+  .hero-credito {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    z-index: 3;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+
+  /* --- Puntos de navegación --- */
+  .hero-puntos {
+    position: absolute;
+    left: var(--hero-margen);
+    bottom: 30px;
+    z-index: 5;
+    display: flex;
+    gap: 9px;
+  }
+
+  .hero-punto {
+    width: 11px;
+    height: 11px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #dcb6bf;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .hero-punto:hover { background: #c98c9b; }
+  .hero-punto.activo { background: var(--hero-maroon); transform: scale(1.2); }
+
+  /* --- Celular: foto arriba, texto abajo --- */
+  @media (max-width: 760px) {
+    .hero-slide,
+    .hero-slide.toledo {
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .hero-foto,
+    .hero-slide.toledo .hero-foto {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      order: -1;
+      -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+    }
+
+    .hero-contenido,
+    .hero-slide.toledo .hero-contenido {
+      padding: 0 24px 76px;
+      margin-top: -14px;
+    }
+
+    .hero-credito { top: 10px; bottom: auto; right: 12px; }
+    .hero-texto { font-size: 17px; }
+    .hero-puntos { left: 24px; bottom: 28px; }
+    .hero-slide.toledo .hero-foto::before { font-size: 110px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide,
+    .hero-slide.activa,
+    .hero-contenido > *,
+    .hero-foto img { transition: none; }
+    .hero-foto img { transform: none; }
+  }

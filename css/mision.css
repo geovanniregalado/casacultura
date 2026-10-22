@@ -1,0 +1,150 @@
+ #mision-vision {
+    color: var(--text-dark);
+  }
+
+  
+  /* --- Bloque: foto + texto --- */
+  #mision-vision .mv-bloque {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 52px;
+    align-items: center;
+  }
+
+  #mision-vision .mv-bloque.foto-der { grid-template-columns: 6fr 5fr; }
+  #mision-vision .mv-bloque.foto-der .mv-foto { order: 2; }
+
+
+
+  #mision-vision .mv-foto img.pieza-mision {
+  display: block;
+  width: min(72vw, 420px);
+  height: auto;
+  aspect-ratio: 1275 / 1650;
+  object-fit: contain;
+  margin: 0 auto;
+}
+@media (max-width: 780px) {
+  #mision-vision .mv-foto,
+  #mision-vision .mv-bloque.foto-der .mv-foto {
+    aspect-ratio: auto;
+    -webkit-mask: none;
+    mask: none;
+  }
+  #mision-vision .mv-foto img.pieza-mision { width: min(68vw, 300px); }
+}
+
+  /* --- Texto --- */
+  #mision-vision .mv-texto { position: relative; }
+
+  #mision-vision .mv-titulo {
+    position: relative;
+    font-family: var(--font-titles);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 44px; font-size: clamp(36px, 6vw, 62px);
+    line-height: 1;
+    color: var(--guinda-light);
+    margin: 0 0 16px;
+  }
+
+
+  /* Cuerda trenzada como separador */
+  #mision-vision .mv-cuerda {
+    width: 120px;
+    height: 6px;
+    border-radius: 3px;
+    /*background: repeating-linear-gradient(90deg, #8a6f4f 0 9px, #c9a074 9px 21px);*/
+    background: var(--guinda-dark);
+    margin-bottom: 22px;
+  }
+
+
+  #mision-vision .mv-parrafo {
+    font-size: 18px;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* Lista de objetivos */
+  #mision-vision .mv-objetivos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #mision-vision .mv-objetivos li {
+    display: flex;
+    gap: 14px;
+    font-size: 18px;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  #mision-vision .mv-objetivos li:last-child { margin-bottom: 0; }
+
+  #mision-vision .mv-objetivos .n {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--guinda-dark);
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  /* --- Animación al hacer scroll (solo si el navegador la permite) --- */
+  #mision-vision.mv-anim .mv-bloque {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  #mision-vision.mv-anim .mv-bloque.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  img.pieza-mision { display: block; width: min(90vw, 500px); height: auto; aspect-ratio: 1275 / 1650; }
+  img.pieza-mision:not([src]) { visibility: hidden; }
+
+  .pausado .trazo { animation-play-state: paused; }
+
+  /* --- Celular: foto arriba con el borde festoneado hacia abajo --- */
+  @media (max-width: 780px) {
+    #mision-vision .mv-banda { padding: 58px 20px; }
+
+    #mision-vision .mv-bloque,
+    #mision-vision .mv-bloque.foto-der {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    #mision-vision .mv-bloque.foto-der .mv-foto { order: 0; }
+
+    #mision-vision .mv-foto,
+    #mision-vision .mv-bloque.foto-der .mv-foto {
+      --alto: 18px;
+      aspect-ratio: 16 / 11;
+      -webkit-mask:
+        linear-gradient(#000 0 0) top / 100% calc(100% - var(--alto)) no-repeat,
+        radial-gradient(ellipse 50% 100% at 50% 0, #000 98%, transparent 100%) bottom left / calc(100% / 8) var(--alto) round no-repeat;
+      mask:
+        linear-gradient(#000 0 0) top / 100% calc(100% - var(--alto)) no-repeat,
+        radial-gradient(ellipse 50% 100% at 50% 0, #000 98%, transparent 100%) bottom left / calc(100% / 8) var(--alto) round no-repeat;
+    }
+
+    #mision-vision .mv-num { top: -34px; font-size: 84px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #mision-vision.mv-anim .mv-bloque { transition: none; }
+  }

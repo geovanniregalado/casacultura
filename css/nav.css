@@ -1,0 +1,115 @@
+
+    /* ── NAVBAR ── */
+
+    
+    .navbar-custom {
+      transition: all .5s;
+      
+      padding: 0.6rem 0;
+      
+      position: fixed;      
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;   
+    }
+
+    .navbar-custom::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 170px;                 /* más alto que el nav para que se desvanezca suave */
+  background: linear-gradient(
+    to bottom,
+    rgba(253, 246, 236, 0.75) 0%,
+    rgba(253, 246, 236, 0.45) 55%,
+    rgba(253, 246, 236, 0) 100%
+  );
+  pointer-events: none;          /* no estorba los clics */
+  z-index: -1;
+  transition: opacity .3s;
+}
+
+    .navbar-brand-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar-brand-wrapper img {
+      height: 52px;
+      width: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .scrolled{
+      box-shadow: 0 20px 20px rgba(123, 28, 62, 0.12);
+      background-color: var(--crema);
+    }
+
+  .navbar-custom.scrolled::before { opacity: 0; }
+
+    
+
+    .brand-text {
+      line-height: 1.1;
+    }
+
+    .brand-text .name {
+      font-family: var(--font-titles);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-text .sub {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-link-custom {
+      font-family: var(--font-titles);
+      font-size: 17px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-dark) !important;
+      padding: 0.4rem 1rem !important;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      text-decoration: none !important;
+    }
+
+.nav-link-custom {
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+
+.nav-link-custom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--guinda);   /* o #f2b83c para dorado */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
+
+.nav-link-custom:hover::after,
+.nav-link-custom:focus-visible::after,
+.nav-link-custom.active::after {
+  transform: scaleX(1);
+}
+
+/* en el menú móvil, que el subrayado mida solo lo que mide el texto */
+#mobileNav .nav-link-custom { width: fit-content; }
+
+.colorear{
+  background-color: var(--crema);
+}

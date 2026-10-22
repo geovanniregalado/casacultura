@@ -1,0 +1,271 @@
+#espacios {
+    background: var(--paper);
+    padding: 56px 20px 60px;
+  }
+
+  #esp-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: clamp(120px, 17vw, 200px);
+    gap: 14px;
+  }
+
+  .esp-tarjeta.mediana { grid-column: span 2;  }
+  .esp-tarjeta.ancha   { grid-column: span 3;  }
+  .esp-tarjeta.alta    { grid-column: span 2; grid-row: span 2;  }
+  .esp-tarjeta.grande  { grid-column: span 4; grid-row: span 2;  }
+
+  /* --- Tarjeta con borde inferior de papel picado --- */
+  .esp-tarjeta {
+    text-decoration: none;
+    color: inherit;
+    scroll-margin-top: 110px;
+    --alto: 14px;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: #5a4a3f;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    container-type: inline-size;
+    
+    transition: transform 0.18s ease;
+  }
+
+  .esp-tarjeta:hover,
+  .esp-tarjeta:focus-visible { transform: translateY(-4px); outline: none; }
+
+  .esp-tarjeta img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .esp-tarjeta:hover img { transform: scale(1.05); }
+
+  .esp-degradado {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(20, 8, 12, 0.88), rgba(20, 8, 12, 0.05) 62%);
+  }
+
+  .esp-nombres {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 26px;
+  }
+
+  .esp-zapoteco {
+    font-family: var(--font-zapoteco);
+    font-style: italic;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1;
+    font-size: 26px; font-size: clamp(18px, 11cqw, 30px);
+  }
+
+  .esp-espanol {
+    color: rgba(255, 255, 255, 0.88);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-top: 6px;
+    font-size: 11px; font-size: clamp(9.5px, 4.6cqw, 12px);
+  }
+
+  .esp-raya {
+    width: 34px;
+    height: 3px;
+    background: #f5c242;
+    margin-top: 9px;
+  }
+
+  .esp-tarjeta.grande .esp-zapoteco { font-size: clamp(24px, 7cqw, 44px); }
+  .esp-tarjeta.grande .esp-espanol  { font-size: clamp(11px, 2.4cqw, 14px); }
+  .esp-tarjeta.grande .esp-nombres  { left: 24px; right: 24px; bottom: 32px; }
+  .esp-tarjeta.grande.sin-zapoteco .esp-espanol { font-size: clamp(22px, 6cqw, 38px); }
+
+  /* Cuando el espacio no tiene nombre zapoteco, el nombre en español es el título grande */
+  .esp-tarjeta.sin-zapoteco .esp-espanol {
+    font-family: var(--font-zapoteco);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.05;
+    margin-top: 0;
+    font-size: 22px; font-size: clamp(17px, 9cqw, 26px);
+    color: #fff;
+  }
+
+  /* --- Ventana de detalle --- */
+  .esp-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(20, 10, 8, 0.78);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* El modal se abre con :target (sin JavaScript): el enlace de la tarjeta apunta a #esp-nombre */
+  .esp-modal:target { display: flex; animation: esp-aparecer .25s ease; }
+  @keyframes esp-aparecer { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Evita que la página de fondo se desplace mientras el modal está abierto */
+  body:has(.esp-modal:target) { overflow: hidden; }
+
+  /* Capa invisible detrás del panel: al pulsarla se cierra el modal */
+  .esp-fondo { position: absolute; inset: 0; cursor: default; }
+
+  .esp-panel {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 780px;
+    max-height: 92vh;
+    overflow-y: auto;
+    background: var(--paper);
+    border-radius: 16px;
+  }
+
+  .esp-panel-foto {
+    position: relative;
+    height: 280px; height: clamp(200px, 40vw, 340px);
+    background: #5a4a3f;
+  }
+
+  .esp-panel-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .esp-btn {
+    text-decoration: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #6b1a35;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .esp-btn:hover,
+  .esp-btn:focus-visible { background: #fff; outline: 2px solid #6b1a35; }
+  .esp-btn.cerrar { top: 12px; right: 12px; }
+  .esp-btn.anterior { left: 12px; top: 50%; transform: translateY(-50%); }
+  .esp-btn.siguiente { right: 12px; top: 50%; transform: translateY(-50%); }
+
+  .esp-panel-cuerpo { padding: 24px 28px 30px; }
+
+  .esp-panel-zapoteco {
+    font-family: var(--font-zapoteco);
+    font-style: italic;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #6b1a35;
+    font-size: 36px;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .esp-panel-espanol {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8a7a68;
+    margin-top: 8px;
+  }
+
+  .esp-panel-cuerpo .esp-panel-raya {
+    width: 44px;
+    height: 3px;
+    background: #c9a074;
+    margin: 14px 0 16px;
+  }
+
+  .esp-panel-texto p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #3a2a1f;
+    margin: 0 0 14px;
+  }
+
+  .esp-datos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .esp-dato {
+    background: #f0e4d0;
+    color: #5c4a2f;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  .esp-enlace {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    background: #6b1a35;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  .esp-enlace:hover { background: #5a1329; }
+
+  /* Celular: 2 columnas; "dense" rellena cualquier hueco para que no quede ninguna suelta */
+  @media (max-width: 700px) {
+    #esp-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: clamp(150px, 44vw, 240px);
+      grid-auto-flow: dense;
+      gap: 12px;
+    }
+    .esp-tarjeta.mediana,
+    .esp-tarjeta.alta   { grid-column: span 1; grid-row: span 1; --puntas: 5; }
+    .esp-tarjeta.ancha  { grid-column: span 2; --puntas: 10; }
+    .esp-tarjeta.grande { grid-column: span 2; grid-row: span 2; --puntas: 10; }
+  }
+
+  @media (max-width: 480px) {
+    .esp-panel-cuerpo { padding: 20px 20px 26px; }
+    .esp-panel-zapoteco { font-size: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .esp-modal:target { animation: none; }
+    .esp-tarjeta, .esp-tarjeta img { transition: none; }
+  }

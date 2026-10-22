@@ -1,0 +1,176 @@
+
+  #contacto .contacto-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 28px;
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 700px) {
+    .contacto-grid { grid-template-columns: 1fr; }
+  }
+
+  /* --- Columna de información --- */
+  .contacto-info {
+    background: var(--guinda);
+    border-radius: 12px;
+    padding: 22px;
+    color: #fff;
+  }
+
+  .contacto-dato {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .contacto-dato i {
+    font-size: 18px;
+    color: #e6c3ce;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .contacto-dato a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .contacto-dato a:hover { text-decoration: underline; }
+
+  .contacto-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--guinda);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 6px 0 16px;
+  }
+
+  .contacto-whatsapp:hover { background: #f2e9de; }
+
+  .contacto-redes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .contacto-redes a {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .contacto-redes a:hover { background: rgba(255,255,255,0.28); }
+
+  .contacto-mapa {
+    height: 190px;
+    border-radius: 12px;
+    margin-top: 16px;
+    overflow: hidden;
+    border: 1px solid #e6dac3;
+  }
+
+  .contacto-mapa iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  /* --- Columna del formulario --- */
+  .contacto-form {
+    background: #fff;
+    border: 1px solid #e6dac3;
+    border-radius: 12px;
+    padding: 26px;
+  }
+
+  .contacto-form h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 16px;
+  }
+
+  .contacto-campo { margin-bottom: 14px; }
+
+  .contacto-campo label {
+    display: block;
+    font-size: 11px;
+    color: #8a7a68;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+  }
+
+  .contacto-campo input,
+  .contacto-campo textarea {
+    width: 100%;
+    border: 1px solid #e6dac3;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #faf7f0;
+    box-sizing: border-box;
+    color: #3a2a1f;
+  }
+
+  .contacto-campo input:focus,
+  .contacto-campo textarea:focus {
+    outline: none;
+    border-color: #6b1a35;
+    background: #fff;
+  }
+
+  .contacto-campo textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .contacto-enviar {
+    width: 100%;
+    background: #6b1a35;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+  }
+
+  .contacto-enviar:hover { background: #5a1329; }
+  .contacto-enviar:disabled { opacity: 0.6; cursor: default; }
+
+  .contacto-mensaje-estado {
+    margin-top: 12px;
+    font-size: 13px;
+    text-align: center;
+    display: none;
+  }
+
+  .contacto-mensaje-estado.exito { display: block; color: #2d6b3f; }
+  .contacto-mensaje-estado.error { display: block; color: #a12b2b; }
