@@ -9,9 +9,12 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
     rel="stylesheet" />
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Cormorant+Garamond:wght@300;400;600&display=swap"
-    rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+
 
   <link rel="stylesheet" href="css/style.css">
 
@@ -32,12 +35,9 @@
   <style id="preloader-css">
     :root {
       --pre-fondo: #fdf6ec;
-      /* crema de tu página */
       --pre-color: #3a1220;
-      /* color de la figura (vino oscuro) */
       --pre-ancho: clamp(110px, 16vw, 170px);
       --pre-ciclo: 4.4s;
-      /* duración de cada vuelta: dibujar + rellenar + desvanecer */
     }
 
     #preloader {
@@ -49,7 +49,6 @@
       height: 100vh;
       width: 100dvw;
       height: 100dvh;
-      /* mide la pantalla visible aunque la página tenga desborde horizontal en móvil */
       overflow: hidden;
       display: grid;
       place-items: center;
@@ -75,8 +74,6 @@
       animation: pre-ciclo var(--pre-ciclo) ease-in-out infinite;
     }
 
-    /* 1) los contornos se trazan; 2) el relleno aparece; 3) el trazo se retira para quedar
-        con el grosor original de la pieza */
     #preloader .trazo {
       fill: none;
       stroke: var(--pre-color);
@@ -131,7 +128,6 @@
 
     @keyframes pre-ciclo {
 
-      /* se desvanece al final de cada vuelta y vuelve a empezar */
       0%,
       84% {
         opacity: 1;
@@ -143,7 +139,6 @@
       }
     }
 
-    /* Sin animaciones si el usuario lo pidió: figura completa y estática */
     @media (prefers-reduced-motion: reduce) {
 
       #preloader svg,
@@ -265,7 +260,6 @@
       <div id="mobileNav" style="display:none;padding:1rem 0">
         <a href="#inicio" class="nav-link-custom d-block mb-1">Inicio</a>
         <a href="#efemerides" class="nav-link-custom d-block mb-1">Efemérides</a>
-        <a href="#noticias" class="nav-link-custom d-block mb-1">Noticias</a>
         <a href="#cartelera" class="nav-link-custom d-block mb-1">Cartelera</a>
         <a href="#didxaguie" class="nav-link-custom d-block mb-1">Diidxaguie'</a>
         <a href="#contacto" class="nav-link-custom d-block mb-1">Contacto</a>
@@ -280,7 +274,6 @@
       <!-- DIAPOSITIVA: BIENVENIDA -->
       <article class="hero-slide activa" role="group" aria-roledescription="diapositiva">
         <div class="hero-foto">
-          <!-- AJUSTA AQUÍ: la foto de tu héroe actual (el corredor) -->
           <img src="img/hero/pasillos.jpg" alt="Corredor con techo de madera de la Casa de la Cultura de Juchitán"
             onerror="this.remove()">
         </div>
@@ -298,7 +291,8 @@
         </div>
         <div class="hero-contenido">
           <h1 class="hero-titulo">Lidxi<br>Guendabiaani</h1>
-          <p class="hero-texto">Ubicada en un inmueble construido a finales del siglo XIX, la Casa de la Cultura es un espacio dedicado al encuentro, la expresión artística y la preservación del patrimonio cultural.</p>
+          <p class="hero-texto">Ubicada en un inmueble construido a finales del siglo XIX, la Casa de la Cultura es un
+            espacio dedicado al encuentro, la expresión artística y la preservación del patrimonio cultural.</p>
           <a class="hero-boton" href="#mision-vision">Conoce nuestra historia <span aria-hidden="true">→</span></a>
         </div>
       </article>
@@ -307,8 +301,7 @@
       <article class="hero-slide toledo" role="group" aria-roledescription="diapositiva">
         <div class="hero-foto">
           <img src="img/hero/francisco-toledo.jpg" alt="Retrato de Francisco Toledo" onerror="this.remove()">
-          <!-- AJUSTA AQUÍ: crédito de la foto (o borra esta línea)
-          <span class="hero-credito">Foto: crédito de la fotografía</span> -->
+
         </div>
         <div class="hero-contenido">
           <p class="hero-kicker">Antecedentes históricos</p>
@@ -317,12 +310,9 @@
             Artista juchiteco que impulsó la creación de Lidxi Guendabiaani, inaugurada el 22 de marzo
             de 1972 con el propósito de revalorar la cultura zapoteca y su historia.
           </p>
-          <!-- AJUSTA AQUÍ: a dónde lleva el botón (por ejemplo, la sección de antecedentes) -->
           <a class="hero-boton" href="#mision-vision">Conoce nuestra historia <span aria-hidden="true">→</span></a>
         </div>
       </article>
-
-      <!-- Si agregas más diapositivas, copia una de las de arriba aquí: los puntos se crean solos. -->
 
     </div>
 
@@ -341,11 +331,9 @@
 
         </div>
         <div class="mv-texto">
-          <!--<span class="mv-num" aria-hidden="true">01</span>-->
 
           <h3 class="mv-titulo" data-aos="zoom-in">Misión</h3>
           <div class="mv-cuerda"></div>
-          <!--<p class="mv-destacado">Fortaleciendo la cultura zapoteca del Istmo</p>-->
           <p class="mv-parrafo" data-aos="zoom-in">
             Contribuir al desarrollo cultural, artístico e identitario de los habitantes del Istmo
             Oaxaqueño a través de la investigación, enseñanza y preservación de las artes en
@@ -360,8 +348,6 @@
     <div class="mv-banda">
       <article class="mv-bloque foto-der">
         <div class="mv-foto">
-          <!-- <img src="img/institucion/vision.jpg" alt="Corredor con techo de madera de la Casa de la Cultura de Juchitán"
-            loading="lazy"> -->
           <img class="pieza-mision" data-src="img/svg/PIEZA-42-nueva.svg" alt="Pieza 42" width="100" loading="lazy">
         </div>
         <div class="mv-texto">
@@ -473,15 +459,17 @@
         </div>
       </a>
 
-      <a class="esp-tarjeta alta sin-zapoteco" data-aos="flip-up" id="card-tienda" href="#esp-tienda"
-        aria-label="Ver más sobre Tienda">
-        <img src="img/espacios/tienda.jpg" alt="Tienda" loading="lazy">
+      <a class="esp-tarjeta alta" data-aos="flip-up" id="card-biblioteca" href="#esp-biblioteca"
+        aria-label="Ver más sobre Biblioteca">
+        <img src="img/espacios/biblioteca.jpg" alt="Biblioteca" loading="lazy">
         <div class="esp-degradado"></div>
         <div class="esp-nombres">
-          <div class="esp-espanol">Tienda</div>
+          <div class="esp-zapoteco">Bacuzaguí</div>
+          <div class="esp-espanol">Biblioteca</div>
           <div class="esp-raya"></div>
         </div>
       </a>
+
       <a class="esp-tarjeta alta sin-zapoteco" data-aos="flip-up" id="card-ludoteca" href="#esp-ludoteca"
         aria-label="Ver más sobre Ludoteca">
         <img src="img/espacios/ludoteca.jpg" alt="Ludoteca" loading="lazy" style="object-position: center 60%">
@@ -490,7 +478,9 @@
           <div class="esp-espanol">Ludoteca</div>
           <div class="esp-raya"></div>
         </div>
+
       </a>
+
       <a class="esp-tarjeta grande sin-zapoteco" data-aos="flip-up" id="card-taller-de-artes-left"
         href="#esp-taller-de-artes-graficas" aria-label="Ver más sobre Taller de Artes Gráficas">
         <img src="img/espacios/taller-artes-graficas.jpg" alt="Taller de Artes Gráficas" loading="lazy"
@@ -501,17 +491,21 @@
           <div class="esp-raya"></div>
         </div>
       </a>
-      <a class="esp-tarjeta grande" data-aos="flip-up" id="card-biblioteca" href="#esp-biblioteca"
-        aria-label="Ver más sobre Biblioteca">
-        <img src="img/espacios/biblioteca.jpg" alt="Biblioteca" loading="lazy">
+
+
+
+      <a class="esp-tarjeta ancha sin-zapoteco" data-aos="flip-up" id="card-tienda" href="#esp-tienda"
+        aria-label="Ver más sobre Tienda">
+        <img src="img/espacios/tienda.jpg" alt="Tienda" loading="lazy">
         <div class="esp-degradado"></div>
         <div class="esp-nombres">
-          <div class="esp-zapoteco">Bacuzaguí</div>
-          <div class="esp-espanol">Biblioteca</div>
+          <div class="esp-espanol">Tienda</div>
           <div class="esp-raya"></div>
         </div>
       </a>
-      <a class="esp-tarjeta alta" data-aos="flip-up" id="card-sala-de-arte-prehispanico"
+
+
+      <a class="esp-tarjeta ancha" data-aos="flip-up" id="card-sala-de-arte-prehispanico"
         href="#esp-sala-de-arte-prehispanico" aria-label="Ver más sobre Sala de arte prehispánico">
         <img src="img/espacios/sala-prehispanico.jpg" alt="Sala de arte prehispánico" loading="lazy">
         <div class="esp-degradado"></div>
@@ -521,6 +515,7 @@
           <div class="esp-raya"></div>
         </div>
       </a>
+
     </div>
   </section>
 
@@ -907,7 +902,6 @@
       <button class="cartelera-flecha izquierda" id="cartelera-flecha-izq"
         aria-label="Ver publicaciones anteriores">‹</button>
       <div class="cartelera-feed" id="cartelera-feed">
-        <!-- Las publicaciones se insertan aquí con JS -->
       </div>
       <button class="cartelera-flecha derecha" id="cartelera-flecha-der" aria-label="Ver más publicaciones">›</button>
     </div>
@@ -989,11 +983,11 @@
           </div>
           <div class="contacto-dato">
             <i class="bi bi-envelope" aria-hidden="true"></i>
-            <a href="mailto:contacto@casaculturajuchitan.mx">contacto@casaculturajuchitan.mx</a>
+            <a href="mailto:contacto@casaculturajuchitan.mx">casacult.istmo5@gmail.com</a>
           </div>
           <div class="contacto-dato">
             <i class="bi bi-clock" aria-hidden="true"></i>
-            <div>Lunes a Viernes, 9:00 – 18:00</div>
+            <div>Lunes a viernes de 9:00 – 14:00 y de 16:00 – 19:00, sabados de 9:00 – 14:00.</div>
           </div>
 
           <a class="contacto-whatsapp" href="https://wa.me/529711429395" target="_blank" rel="noopener">
@@ -1063,8 +1057,7 @@
                 aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a></li>
             <li><a href="https://instagram.com/lidxi_guendabiaani" target="_blank" rel="noopener"
                 aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>
-            <!-- YouTube: descomenta cuando tengan el enlace REAL de su canal
-          <li><a href="https://youtube.com/@TU_CANAL" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube" aria-hidden="true"></i></a></li> -->
+
           </ul>
         </div>
 
@@ -1086,10 +1079,12 @@
           <ul class="pie__datos">
             <li><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Belisario Domínguez s/n, Centro,<br>70000 Juchitán
                 de Zaragoza, Oaxaca</span></li>
-            <li><i class="bi bi-clock" aria-hidden="true"></i><span>Lunes a viernes, 9:00 – 18:00</span></li>
+            <li><i class="bi bi-clock" aria-hidden="true"></i><span>Lunes a viernes de 9:00 – 14:00 y de 16:00 – 19:00,
+                sabados de 9:00 – 14:00.
+              </span></li>
             <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+529711429395">971 142 9395</a></li>
             <li><i class="bi bi-envelope" aria-hidden="true"></i><a
-                href="mailto:contacto@casaculturajuchitan.mx">contacto@casaculturajuchitan.mx</a></li>
+                href="mailto:contacto@casaculturajuchitan.mx">casacult.istmo5@gmail.com</a></li>
           </ul>
           <div class="pie__botones">
             <a class="pie__boton pie__boton--principal" href="https://wa.me/529711429395" target="_blank"
@@ -1122,8 +1117,8 @@
   <script>
 
     (function () {
-      var MINIMO_MS = 2800;     // tiempo mínimo en pantalla: lo que tarda en dibujarse y rellenarse la figura
-      var MAXIMO_MS = 10000;    // por seguridad: si algo tarda demasiado, se quita igual
+      var MINIMO_MS = 2800;
+      var MAXIMO_MS = 3000;
       var pre = document.getElementById('preloader');
       if (!pre) return;
       var inicio = Date.now(), listo = false;

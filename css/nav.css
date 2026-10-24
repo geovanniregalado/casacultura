@@ -1,6 +1,5 @@
 
     /* ── NAVBAR ── */
-
     
     .navbar-custom {
       transition: all .5s;
@@ -51,7 +50,6 @@
   .navbar-custom.scrolled::before { opacity: 0; }
 
     
-
     .brand-text {
       line-height: 1.1;
     }
@@ -95,7 +93,7 @@
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: var(--guinda);   /* o #f2b83c para dorado */
+  background: var(--guinda);   
   transform: scaleX(0);
   transform-origin: left;
   transition: transform .3s ease;

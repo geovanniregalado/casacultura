@@ -1,21 +1,12 @@
 (function () {
-  /* =========================================================
-       CONFIGURACIÓN — AJUSTA AQUÍ
-    ========================================================= */
-  const API_KEY = "AIzaSyDL92hbqX-MTQJI_AIic8Mm4uyeU8cr8fQ"; // AJUSTA AQUÍ: pega tu API key de YouTube Data API v3
-  const PLAYLIST_ID = "PLUVtiWasxSXQ"; // AJUSTA AQUÍ: pega el ID de tu playlist (lo sacas de la URL de la playlist en YouTube)
-  const MAX_VIDEOS = 12; // cuántos videos mostrar como máximo
-  const POR_PAGINA = 2; // cuántas cápsulas de la grilla se ven antes de dar clic en "Cargar más" (destacada + 2 = 3 visibles al inicio)
+  const API_KEY = "AIzaSyDL92hbqX-MTQJI_AIic8Mm4uyeU8cr8fQ";
+  const PLAYLIST_ID = "PLUVtiWasxSXQ";
+  const MAX_VIDEOS = 12;
+  const POR_PAGINA = 2;
 
-  let cantidadVisible = POR_PAGINA; // se va incrementando cada vez que se da clic en "Cargar más"
+  let cantidadVisible = POR_PAGINA;
 
-  /* =========================================================
-     Convención opcional para el título de cada video en YouTube:
-     "Nombre del poeta — Título del poema"
-     (con guion largo " — "). Si tus títulos no siguen este
-     formato, el código simplemente muestra el título completo
-     y no separa autor/poema.
-  ========================================================= */
+  /* "Nombre del poeta — Título del poema" */
   function separarAutorYTitulo(tituloCompleto) {
     const partes = tituloCompleto.split(" — ");
     if (partes.length === 2) {
@@ -37,9 +28,6 @@
 
   function crearIframe(videoId) {
     const iframe = document.createElement("iframe");
-    // modestbranding reduce el logo de YouTube; rel=0 evita sugerencias de otros canales al terminar;
-    // iv_load_policy=3 desactiva anotaciones. YouTube no permite quitar el 100% de su marca
-    // (por ejemplo, el nombre del canal puede asomar brevemente al pausar), pero esto la minimiza.
     iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3`;
     iframe.allow =
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
@@ -66,7 +54,7 @@
         (item) => item.snippet.resourceId.videoId,
       );
 
-      // 2. Obtener duración de cada video (playlistItems no la incluye)
+      // 2. Obtener duración de cada video
       const urlDetalles = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${videoIds.join(",")}&key=${API_KEY}`;
       const resDetalles = await fetch(urlDetalles);
       const dataDetalles = await resDetalles.json();
@@ -88,7 +76,7 @@
             ? item.snippet.thumbnails.high.url
             : item.snippet.thumbnails.default.url,
           duracion: duraciones[videoId] || "",
-          fechaAgregado: item.snippet.publishedAt, // fecha en que se agregó a la playlist, para poder ordenar por "más reciente"
+          fechaAgregado: item.snippet.publishedAt, // fecha en que se agregó a la playlist
         };
       });
 
@@ -105,7 +93,7 @@
     }
   }
 
-  let todosLosVideos = []; // se guarda aquí para poder "cargar más" sin volver a llamar a la API
+  let todosLosVideos = []; // se guarda aquí para poder cargar más sin volver a llamar a la API
   let elementoActivo = null; // la tarjeta/destacada que está reproduciendo un video ahorita
   let contenidoOriginalActivo = ""; // cómo se veía esa tarjeta antes de reproducirse, para poder restaurarla
 
@@ -117,7 +105,7 @@
   function dibujar() {
     const contenedor = document.getElementById("didxaguie-contenido");
     contenedor.innerHTML = "";
-    elementoActivo = null; // al reconstruir la sección (ej. "Cargar más"), ya no hay ningún video reproduciéndose
+    elementoActivo = null;
 
     const [destacado, ...resto] = todosLosVideos;
     const visibles = resto.slice(0, cantidadVisible);

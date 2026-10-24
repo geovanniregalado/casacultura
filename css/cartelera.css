@@ -1,9 +1,4 @@
-/* ==========================================================================
-   CARTELERA · Casa de la Cultura de Juchitán
-   Diseño "cartel primero": el cartel es el protagonista; la fecha va en una
-   cinta guinda (misma familia visual que Efemérides) y debajo van los datos
-   clave y una acción clara.
-   ========================================================================== */
+
 
 #cartelera {
   --car-guinda: var(--guinda, #7B1C3E);
@@ -13,7 +8,6 @@
   --car-linea: rgba(123, 28, 62, .14);
 }
 
-/* [hidden] siempre gana (los botones/flechas definen su propio display) */
 #cartelera [hidden],
 .cartelera-lightbox [hidden] { display: none !important; }
 
@@ -124,7 +118,7 @@
 .car-card[data-tipo="presentacion"] { --c: #5b2a4e; }
 .car-card[data-tipo="noticia"]      { --c: #3a1220; }
 
-/* Cartel: proporción fija 13:16 (la de tus carteles) para que todas alineen */
+/* Cartel: proporción fija 13:16 para que todas alineen */
 .car-poster {
   position: relative;
   display: block;
@@ -343,7 +337,7 @@
 }
 .car-compartir:hover { background: rgba(123, 28, 62, .08); }
 
-/* Menú de compartir (solo si el navegador no tiene compartir nativo) */
+/* Menú de compartir */
 .car-menu {
   position: absolute;
   right: 0;
@@ -377,7 +371,7 @@
 .car-menu a:hover,
 .car-menu button:hover { background: rgba(123, 28, 62, .08); }
 
-/* Actividades finalizadas (solo si la persona pide verlas) */
+/* Actividades finalizadas  */
 .car-card.pasada .car-poster img { filter: grayscale(1) contrast(.95); }
 .car-card.pasada .car-cinta { background: #8a8374; }
 .car-card.pasada .car-tipo { color: #8a8374; }

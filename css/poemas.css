@@ -1,25 +1,5 @@
 
 
-  #didxaguie .dg-titulo {
-    font-family: Georgia, 'Times New Roman', serif; /* ajusta a tu tipografía de encabezados */
-    font-size: 34px;
-    font-weight: 600;
-    color: #6b1a35;
-    text-align: center;
-    margin-bottom: 8px;
-  }
-
-  #didxaguie .dg-subtitulo {
-    text-align: center;
-    font-size: 13px;
-    color: #8a7a68;
-    margin-bottom: 30px;
-  }
-
-  #didxaguie .dg-subtitulo em {
-    font-style: italic;
-  }
-
   /* --- Cápsula destacada (el video más reciente de la playlist) --- */
   #didxaguie .dg-destacada {
     max-width: 750px;
@@ -77,7 +57,7 @@
   }
 
   #didxaguie .dg-titulo-destacada {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-zapoteco);
     font-size: 22px;
     font-weight: 600;
     color: #fff;
@@ -159,7 +139,7 @@
   }
 
   #didxaguie .dg-titulo-tarjeta {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-zapoteco);
     font-size: 13px;
     font-weight: 600;
     color: #fff;

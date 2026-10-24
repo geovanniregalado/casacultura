@@ -18,7 +18,7 @@
     padding: 0 24px;
   }
 
-  /* Portada: se muestra COMPLETA (sin recortar), con sombra suave y una leve inclinación */
+  /* Portada*/
   .revista__portada { margin: 0; width: clamp(180px, 25vw, 270px); }
   .revista__portada img {
     display: block;

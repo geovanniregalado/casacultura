@@ -82,7 +82,7 @@
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #993556;
+    color: var(--guinda-light);
   }
 
   .hero-titulo {
@@ -123,7 +123,7 @@
 
   /* --- Diapositiva de Francisco Toledo --- */
   .hero-slide.toledo .hero-foto { width: 48%; background: #6b1a35; }
-  .hero-slide.toledo .hero-foto img { object-position: center 20%; } /* AJUSTA AQUÍ: qué parte de la foto se ve */
+  .hero-slide.toledo .hero-foto img { object-position: center 20%; } 
   .hero-slide.toledo .hero-contenido { padding-right: 52%; }
 
   /* Monograma de respaldo, visible solo si no hay foto */

@@ -1,6 +1,4 @@
-/* ===== Footer · Casa de la Cultura de Juchitán =====
-   Reemplaza TODAS las reglas viejas de "footer" (en style.css: footer, footer h5, footer a, footer .footer-logo img,
-   footer .social-icons a, footer .footer-bottom). No depende de la cuadrícula de Bootstrap. */
+
 .pie {
   --pie-fondo: var(--guinda-dark, #5a1229);
   --pie-oro: var(--oro-light, #e8c97a);

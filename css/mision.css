@@ -1,9 +1,4 @@
- #mision-vision {
-    color: var(--text-dark);
-  }
 
-  
-  /* --- Bloque: foto + texto --- */
   #mision-vision .mv-bloque {
     max-width: 1040px;
     margin: 0 auto;
@@ -15,7 +10,6 @@
 
   #mision-vision .mv-bloque.foto-der { grid-template-columns: 6fr 5fr; }
   #mision-vision .mv-bloque.foto-der .mv-foto { order: 2; }
-
 
 
   #mision-vision .mv-foto img.pieza-mision {
@@ -51,13 +45,10 @@
     margin: 0 0 16px;
   }
 
-
-  /* Cuerda trenzada como separador */
   #mision-vision .mv-cuerda {
     width: 120px;
     height: 6px;
     border-radius: 3px;
-    /*background: repeating-linear-gradient(90deg, #8a6f4f 0 9px, #c9a074 9px 21px);*/
     background: var(--guinda-dark);
     margin-bottom: 22px;
   }
@@ -120,7 +111,7 @@
 
   /* --- Celular: foto arriba con el borde festoneado hacia abajo --- */
   @media (max-width: 780px) {
-    #mision-vision .mv-banda { padding: 58px 20px; }
+    #mision-vision .mv-banda { align-self: center ;padding: 58px 20px; }
 
     #mision-vision .mv-bloque,
     #mision-vision .mv-bloque.foto-der {
@@ -143,6 +134,20 @@
     }
 
     #mision-vision .mv-num { top: -34px; font-size: 84px; }
+    /* Títulos y cuerda centrados en celular */
+#mision-vision .mv-titulo {
+  text-align: center;
+  padding-left: 2px;
+}
+#mision-vision .mv-cuerda {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#mision-vision .mv-parrafo {
+  text-align: justify;
+  hyphens: auto;
+}
   }
 
   @media (prefers-reduced-motion: reduce) {
